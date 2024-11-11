@@ -1,0 +1,26 @@
+{
+  "name": "scheduler",
+  "version": "1.0.0",
+  "description": "TVITPO",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IgUstinov/Scheduler.git"
+  },
+  "keywords": [
+    "-"
+  ],
+  "author": "Ustinov Igor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IgUstinov/Scheduler/issues"
+  },
+  "homepage": "https://github.com/IgUstinov/Scheduler#readme"
+}
