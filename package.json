@@ -2,13 +2,20 @@
   "name": "scheduler",
   "version": "1.0.0",
   "description": "TVITPO",
-  "main": "index.js",
+  "main": "src/scheduler/StartScheduler.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start:auto-scheduler": "node src/scheduler/StartScheduler.js",
+    "start:manual-scheduler": "node src/scheduler/ManualScheduler.js",
+    "start:auto-generator": "node src/generator/AutoGenerator.js",
+    "start:one-generator": "node src/generator/OneTaskGenerator.js",
     "test": "jest --coverage"
   },
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "winston": "^3.17.0",
+    "ws": "^8.18.0"
   },
   "repository": {
     "type": "git",
