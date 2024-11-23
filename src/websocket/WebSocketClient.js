@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
 
-const ws = new WebSocket('ws://localhost:8080')
+const ws = new WebSocket('ws://localhost:8080');
 
-module.exports = ws
+module.exports = ws;
