@@ -22,12 +22,12 @@ class Scheduler {
             ready: this.initQueues()
         };
         
-        this.readyQueueLimit = readyQueueLimit; 
         this.runningTask = null; 
         this.taskExecutionInterval = null;
         this.taskCompletionTimeout = null;
 
-        this.scheduleExecutionMs = scheduleExecutionMs;
+        this.readyQueueLimit = readyQueueLimit > 0 ? readyQueueLimit : 5;
+        this.scheduleExecutionMs = scheduleExecutionMs > 0 ? scheduleExecutionMs : 500;
     }    
 
     initQueues() {
@@ -35,6 +35,11 @@ class Scheduler {
     }
 
     addTask(task) {
+        if (task.priority < 0 || task.priority >= this.priorityLevels || isNaN(task.priority)) {
+            log.abort(`Задача ${task.id} имеет недопустимый приоритет ${task.priority}`);
+            return; 
+        }
+    
         if (this.isReadyQueueFull(task.priority)) {
             this.enqueueToSuspended(task);
         } else {
@@ -43,6 +48,9 @@ class Scheduler {
     }
 
     isReadyQueueFull(priority) {
+        if (priority < 0 || priority >= this.priorityLevels) {
+            return false; 
+        }
         return this.queues.ready[priority].length >= this.readyQueueLimit;
     }
 
@@ -101,8 +109,9 @@ class Scheduler {
 
     handlePreemption() {
         const nextTask = this.getHighestPriorityTask();
+
         if (nextTask) {
-            nextTask.priority > this.runningTask.priority 
+            !this.runningTask || nextTask.priority > this.runningTask.priority 
             ? this.preemptRunningTask(nextTask)
             : this.unshiftToReady(nextTask);
         }
@@ -113,9 +122,11 @@ class Scheduler {
     }
 
     preemptRunningTask(nextTask) {
-        this.logAbort(
-            `Задача ${nextTask.id} с приоритетом ${nextTask.priority} прерывает задачу ${this.runningTask.id} с приоритетом ${this.runningTask.priority}.`
-        );
+        if (this.runningTask) {
+            this.logAbort(
+                `Задача ${nextTask.id} с приоритетом ${nextTask.priority} прерывает задачу ${this.runningTask.id} с приоритетом ${this.runningTask.priority}.`
+            );
+        }
         this.stopRunningTask();
         this.setTaskAsRunning(nextTask);
     }
@@ -151,6 +162,7 @@ class Scheduler {
     }
 
     initializeTimers() {
+        if (!this.runningTask) return;
         if (!this.taskExecutionInterval) {
             this.logExec(
                 `Задача ${this.runningTask.id} с приоритетом ${this.runningTask.priority} начала выполнение.`
@@ -168,6 +180,7 @@ class Scheduler {
             this.logExec(`Задача ${this.runningTask.id} выполняется...`);
         }, this.runningTask.taskExecutionMs);
     }
+    
     initializeTimeout() {
         this.runningTask.isExtended && Math.random() > 0.4
         ? this.initializeWaitingTimeout()
@@ -242,7 +255,7 @@ class Scheduler {
     }
 
     isEnoughSpaceForSuspendTask(shiftedTaskPriority) {
-        return this.queues.waiting[shiftedTaskPriority].length == 0 
+        return this.queues.waiting[shiftedTaskPriority] && this.queues.waiting[shiftedTaskPriority].length == 0 
                 && this.queues.ready[shiftedTaskPriority].length + 1 < this.readyQueueLimit
                 && (this.runningTask == null || this.runningTask.priority != shiftedTaskPriority);
     }

@@ -21,6 +21,11 @@ const logConfigs = {
     },
 };
 
+const createLogFormatter = (name) => {
+    return ({ timestamp, level, message }) => {
+        return `${timestamp} [${name}]\t[${level}]\t${message}`;
+    };
+};
 
 const createCustomLogger = (name) => {
 
@@ -32,9 +37,7 @@ const createCustomLogger = (name) => {
         format: format.combine(
             format.colorize(), // Применение цветов
             format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-            format.printf(({ timestamp, level, message }) => {
-                return `${timestamp} [${name}]\t[${level}]\t${message}`;
-            })
+            format.printf(createLogFormatter(name))
         ),
         transports: [
             new transports.Console(),
@@ -48,4 +51,4 @@ const scheduleLogger = createCustomLogger('Schedule');
 const taskLogger = createCustomLogger('Task');
 const generatorLogger = createCustomLogger('Generator');
 
-module.exports = { scheduleLogger, taskLogger, generatorLogger }
+module.exports = { scheduleLogger, taskLogger, generatorLogger, createLogFormatter }
