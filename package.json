@@ -4,10 +4,10 @@
     "description": "TVITPO",
     "main": "src/scheduler/StartScheduler.js",
     "scripts": {
-        "start:auto-scheduler": "node src/scheduler/StartScheduler.js",
+        "start:auto-scheduler": "node src/scheduler/AutoScheduler.js",
         "start:manual-scheduler": "node src/scheduler/ManualScheduler.js",
         "start:auto-generator": "node src/generator/AutoGenerator.js",
-        "start:one-generator": "node src/generator/OneTaskGenerator.js",
+        "start:manual-generator": "node src/generator/ManualGenerator.js",
         "test": "jest --coverage",
         "lint": "eslint .",
         "format": "prettier --write ."
