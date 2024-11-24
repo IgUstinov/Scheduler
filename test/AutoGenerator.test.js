@@ -3,7 +3,7 @@ jest.mock('../src/generator/Generator.js');
 const { Server: MockServer, WebSocket: MockWebSocket } = require('mock-socket');
 const Generator = require('../src/generator/Generator.js');
 
-describe('Автогенератор', () => {
+describe('Автоматический генератор', () => {
     let generatorMock, server, client;
 
     beforeEach(() => {
