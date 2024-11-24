@@ -1,3 +1,8 @@
+/**
+ * @file Logger.js
+ * @description Определяет пользовательские логгеры для различных компонентов системы.
+ */
+
 const { createLogger, transports, format, addColors } = require('winston');
 
 const logConfigs = {
@@ -21,12 +26,22 @@ const logConfigs = {
     },
 };
 
+/**
+ * Создает форматтер логов для указанного компонента.
+ * @param {string} name Название компонента.
+ * @returns {Function} Функция форматирования логов.
+ */
 const createLogFormatter = (name) => {
     return ({ timestamp, level, message }) => {
         return `${timestamp} [${name}]\t[${level}]\t${message}`;
     };
 };
 
+/**
+ * Создает пользовательский логгер с уникальными уровнями и цветами.
+ * @param {string} name Название компонента.
+ * @returns {object} Настроенный логгер.
+ */
 const createCustomLogger = (name) => {
     addColors(logConfigs.colors);
 
@@ -34,7 +49,7 @@ const createCustomLogger = (name) => {
         levels: logConfigs.levels,
         level: 'make',
         format: format.combine(
-            format.colorize(), // Применение цветов
+            format.colorize(),
             format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
             format.printf(createLogFormatter(name))
         ),

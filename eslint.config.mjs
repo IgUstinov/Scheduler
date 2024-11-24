@@ -14,6 +14,6 @@ export default [
     },
     pluginJs.configs.recommended,
     {
-        ignores: ['**/coverage/*'],
+        ignores: ['**/coverage/*', '**/logs/*', '**/out/*'],
     },
 ];

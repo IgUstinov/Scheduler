@@ -1,3 +1,8 @@
+/**
+ * @file ManualScheduler.js
+ * @description Реализует ручное добавление задач в планировщик и их выполнение.
+ */
+
 const Scheduler = require('./Scheduler.js');
 const Task = require('../task/Task.js');
 
