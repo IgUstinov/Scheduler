@@ -1,7 +1,3 @@
-/**
- * Для тестирования планировщика при ручном добавлении задач
- */
-
 const Scheduler = require('./Scheduler.js');
 const Task = require('../task/Task.js');
 

@@ -19,12 +19,12 @@ describe('WebSocket Клиент', () => {
 
     test('должен подключаться к серверу', (done) => {
         server.on('connection', (socket) => {
-            expect(socket).toBeDefined(); // Сервер успешно принимает подключение клиента
+            expect(socket).toBeDefined();
             done();
         });
 
         client.onopen = () => {
-            expect(client.readyState).toBe(WebSocket.OPEN); // Клиент открыт
+            expect(client.readyState).toBe(WebSocket.OPEN);
         };
     });
 });
