@@ -1,9 +1,9 @@
-const Generator = require('../src/generator/Generator');
-const Task = require('../src/task/Task');
-const { generatorLogger: log } = require('../src/logger/Logger');
+const Generator = require('../../src/generator/Generator');
+const Task = require('../../src/task/Task');
+const { generatorLogger: log } = require('../../src/logger/Logger');
 
-jest.mock('../src/task/Task');
-jest.mock('../src/logger/Logger', () => ({
+jest.mock('../../src/task/Task');
+jest.mock('../../src/logger/Logger', () => ({
     generatorLogger: {
         make: jest.fn(),
         abort: jest.fn(),

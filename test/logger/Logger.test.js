@@ -17,7 +17,7 @@ const {
     taskLogger,
     generatorLogger,
     createLogFormatter,
-} = require('../src/logger/Logger');
+} = require('../../src/logger/Logger');
 
 describe('Создание Логера', () => {
     test('должен создавать с корректными настройками', () => {

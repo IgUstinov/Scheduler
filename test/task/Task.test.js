@@ -1,11 +1,11 @@
-jest.mock('../src/logger/Logger', () => ({
+jest.mock('../../src/logger/Logger', () => ({
     taskLogger: {
         state: jest.fn(),
     },
 }));
 
-const { taskLogger: log } = require('../src/logger/Logger');
-const Task = require('../src/task/Task');
+const { taskLogger: log } = require('../../src/logger/Logger');
+const Task = require('../../src/task/Task');
 
 beforeEach(() => {
     jest.clearAllMocks();

@@ -1,5 +1,5 @@
-jest.mock('../src/task/Task');
-jest.mock('../src/logger/Logger', () => ({
+jest.mock('../../src/task/Task');
+jest.mock('../../src/logger/Logger', () => ({
     scheduleLogger: {
         add: jest.fn(),
         empty: jest.fn(),
@@ -9,9 +9,9 @@ jest.mock('../src/logger/Logger', () => ({
     },
 }));
 
-const Task = require('../src/task/Task');
-const { scheduleLogger: log } = require('../src/logger/Logger');
-const Scheduler = require('../src/scheduler/Scheduler');
+const Task = require('../../src/task/Task');
+const { scheduleLogger: log } = require('../../src/logger/Logger');
+const Scheduler = require('../../src/scheduler/Scheduler');
 
 let scheduler;
 

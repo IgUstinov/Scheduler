@@ -1,8 +1,8 @@
-jest.mock('../src/scheduler/Scheduler.js');
-jest.mock('../src/task/Task.js');
+jest.mock('../../src/scheduler/Scheduler.js');
+jest.mock('../../src/task/Task.js');
 
-const Scheduler = require('../src/scheduler/Scheduler.js');
-const Task = require('../src/task/Task.js');
+const Scheduler = require('../../src/scheduler/Scheduler.js');
+const Task = require('../../src/task/Task.js');
 
 describe('Ручной планировщик', () => {
     let schedulerMock, taskMock;

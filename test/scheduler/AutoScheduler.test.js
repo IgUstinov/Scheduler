@@ -1,11 +1,11 @@
-jest.mock('../src/websocket/WebSocketServer.js', () => {
+jest.mock('../../src/websocket/WebSocketServer.js', () => {
     const EventEmitter = require('events');
     return new EventEmitter();
 });
 
-const wss = require('../src/websocket/WebSocketServer.js');
-const Schedule = require('../src/scheduler/Scheduler.js');
-const Task = require('../src/task/Task.js');
+const wss = require('../../src/websocket/WebSocketServer.js');
+const Schedule = require('../../src/scheduler/Scheduler.js');
+const Task = require('../../src/task/Task.js');
 
 describe('Автоматический планировщик', () => {
     let schedulerMock;
@@ -21,7 +21,6 @@ describe('Автоматический планировщик', () => {
     });
 
     test('должен обрабатывать событие WebSocket', () => {
-        const ws = new wss.constructor();
         const messageHandler = jest.fn();
 
         wss.on('connection', (client) => {

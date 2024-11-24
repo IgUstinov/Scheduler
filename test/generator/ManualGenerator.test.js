@@ -1,7 +1,7 @@
-jest.mock('../src/generator/Generator.js');
+jest.mock('../../src/generator/Generator.js');
 
 const { Server: MockServer, WebSocket: MockWebSocket } = require('mock-socket');
-const Generator = require('../src/generator/Generator.js');
+const Generator = require('../../src/generator/Generator.js');
 
 describe('Ручной генератор', () => {
     let generatorMock, server, client;
