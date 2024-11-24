@@ -17,7 +17,7 @@ scheduler.addTask(task3);
 scheduler.addTask(task4);
 
 setTimeout(() => {
-  scheduler.addTask(task2);
+    scheduler.addTask(task2);
 }, 2000);
 
 scheduler.start();
